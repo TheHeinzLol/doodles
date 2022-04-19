@@ -1,0 +1,24 @@
+memo = {}
+def grid_traveler(m, n):  
+
+  # checking if grid even exists or if it is one-dimentional
+    if m==0 or n==0:
+        return 0;         # there is no way to travel in a grid that does not exist
+    if m==1 or n==1:
+        return 1;         # you can only move one way on grid of one line or column
+        
+  # checking if arguments are in memo
+    if (m,n) in memoor (n,m) in memo: # are there symmetrical keys in memo
+        try:                                         #returning the value of one of the symmetrical keys
+            return memo[(m,n)]
+        except:
+            return memo[(n,m)]
+    memo[(m,n)]= grid_traveler(m-1, n) + grid_traveler(m, n-1)
+    return memo[(m,n)]
+
+print(grid_traveler(1,1)) # 1
+print(grid_traveler(2,3)) # 3
+print(grid_traveler(3,2)) # 3
+print(grid_traveler(3,3)) # 6
+print(grid_traveler(18,18)) # 2333606220
+print(grid_traveler(20,20)) # 35345263800
