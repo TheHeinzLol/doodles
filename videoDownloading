@@ -1,0 +1,17 @@
+# Downloading a video
+from pytube import YouTube
+yt = YouTube("https://www.youtube.com/watch?v=gL8lowcvddw")
+#print(yt.streams) - info about quality of video and audio to choose from
+#itag 22 - 720p, itag 251 - audio 160 kbps
+yt.streams.filter(file_extension='mp4') # getting only mp4 files
+stream = yt.streams.get_by_itag(22) #change 22 to 251 if you only need audio
+stream.download(output_path = 'C:\\Users\\User\\Desktop\\Python Vids') # downloading path
+
+# Downloading playlist
+from pytube import YouTube
+from pytube import Playlist
+p = Playlist('https://youtube.com/playlist?list=PL8E76EB832BA66E75') # link to a public playlist
+for video in p.videos:
+    print(video.title)
+    stream = video.streams.get_by_itag(251) # downloading audio only here. If you need video then change 251 for 22
+    stream.download(output_path = 'C:\\Users\\User\\Desktop\\Python Vids') 
