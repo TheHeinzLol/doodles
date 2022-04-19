@@ -1,0 +1,10 @@
+memo= {} # cache dictionary
+
+def fib(n):
+    if n<3:       # there will be no 1 and 2 keys in cache dict since they have same value of 1 anyway
+        return 1
+    if n not in memo.keys():  # checking the cache and writing new key-value pair if there is no needed one
+        memo[n] = fib(n-2) + fib(n-1)
+    return memo[n]
+
+fib(4)
